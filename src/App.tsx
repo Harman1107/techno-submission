@@ -56,7 +56,7 @@ function App() {
             Header: 'Status',
             Cell: tableProps => (
               <div>
-                {tableProps.row.original.bloodGroup == 'Invited' ? (
+                {tableProps.row.original.bloodGroup === 'Invited' ? (
                   <span className="bg-gray-300 text-gray-800 text-sm font-bold mr-2 px-2.5 py-0.5 rounded  ">
                     Invited
                   </span>
@@ -67,7 +67,6 @@ function App() {
                 )}
               </div>
             ),
-
 
             accessor: 'bloodGroup',
           },
@@ -122,7 +121,7 @@ function App() {
   const resetData = () => setData(originalData);
 
   const changeData = (data: any) => {
-    data.map((data:any) => {
+    data.map((data: any) => {
       if (data.age > 25) {
         data.maidenName = 'Sales Rep';
       } else if (data.age >= 50) {

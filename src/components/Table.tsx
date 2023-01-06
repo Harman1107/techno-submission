@@ -51,22 +51,21 @@ const Table = ({
   });
 
   const [editData, setEditData] = React.useState({
-    firstName:'',
-    maidenName:''
-  })
+    firstName: '',
+    maidenName: '',
+  });
 
-
-  const handleChangeEdit = (event:any) => {
+  const handleChangeEdit = (event: any) => {
     const fieldName = event.target.getAttribute('name');
     const fieldValue = event.target.value;
-    
+
     const newEditData = {...editData};
     newEditData[fieldName] = fieldValue;
     setEditData(newEditData);
     console.log(newEditData);
-  }
+  };
 
-  const handleEditSubmit = (event:any) =>{
+  const handleEditSubmit = (event: any) => {
     event.preventDefault();
     console.log(originalVals);
     const newContact = {
@@ -74,13 +73,12 @@ const Table = ({
       maidenName: editData.maidenName,
     };
     setShowUserModal(false);
-    
+
     // console.log(originalVals.row.original.firstName);
 
     setData((current: any) => current.filter((user: any) => user.id !== 200));
-
-  }
-  const [originalVals, setOrigirnalVals] = React.useState({})
+  };
+  const [originalVals, setOrigirnalVals] = React.useState({});
 
   const handleChange = (event: any) => {
     console.log(event.target.getAttribute('name'));
@@ -95,7 +93,6 @@ const Table = ({
   const camelCase = (str: any) => {
     return str.substring(0, 1).toUpperCase() + str.substring(1);
   };
-
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -131,16 +128,13 @@ const Table = ({
   ];
 
   return (
-
     //Add User Modal
     <>
       {showUserModal && (
         <>
           <div className="justify-center  items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative w- my-6 mx-auto max-w-2xl">
-              
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                   <h3 className="text-3xl font-semibold">Add User</h3>
                   <button
@@ -152,7 +146,7 @@ const Table = ({
                     </span>
                   </button>
                 </div>
-                
+
                 <form className="" onSubmit={e => handleSubmit(e)}>
                   <input
                     type="text"
@@ -209,14 +203,12 @@ const Table = ({
         </>
       )}
 
-    {/* Edit User Modal */}
-    {showEditModal && (
+      {/* Edit User Modal */}
+      {showEditModal && (
         <>
           <div className="justify-center  items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative w- my-6 mx-auto max-w-2xl">
-              
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                   <h3 className="text-3xl font-semibold">Edit User</h3>
                   <button
@@ -228,8 +220,8 @@ const Table = ({
                     </span>
                   </button>
                 </div>
-                
-                <form className="" onSubmit={e =>  handleEditSubmit(e)}>
+
+                <form className="" onSubmit={e => handleEditSubmit(e)}>
                   <input
                     type="text"
                     name="firstName"
@@ -238,7 +230,7 @@ const Table = ({
                     placeholder="Enter Name"
                     onChange={handleChangeEdit}
                   />
-                  
+
                   <input
                     type="text"
                     name="maidenName"
@@ -247,7 +239,7 @@ const Table = ({
                     placeholder="Enter Role"
                     onChange={handleChangeEdit}
                   />
-                 
+
                   <button
                     className="ml-4 mt-4 float-left text-red bg-white-400 border hover:bg-red-700 hover:text-white font-bold py-2 px-4 rounded inline-flex items-center "
                     type="button"
@@ -370,10 +362,12 @@ const Table = ({
                                 >
                                   {cell.render('Cell')}
                                 </td>
-                                {cell.column.Header == 'Last Login' ? (
+                                {cell.column.Header === 'Last Login' ? (
                                   <>
-                                    <button className='mt-6 mr-3 p-2.5 bg-white-500 rounded-xl hover:rounded-3xl hover:bg-gray-600 transition-all duration-300 text-black hover:rounded-3xl hover:bg-gray-600 transition-all duration-300'
-                                     onClick={() => deleteRow(cell)}>
+                                    <button
+                                      className="mt-6 mr-3 p-2.5 bg-white-500 rounded-xl hover:rounded-3xl hover:bg-gray-600 transition-all duration-300 text-black hover:rounded-3xl hover:bg-gray-600 transition-all duration-300"
+                                      onClick={() => deleteRow(cell)}
+                                    >
                                       <span>
                                         <svg
                                           xmlns="http://www.w3.org/2000/svg"
@@ -391,13 +385,14 @@ const Table = ({
                                         </svg>
                                       </span>
                                     </button>
-                                    <button className=" p-2.5 bg-white-500 rounded-xl hover:rounded-3xl hover:bg-gray-600 transition-all duration-300 text-black"
-                                    onClick={() => {
-                                      setOrigirnalVals(cell);
-                                      setEditModal(!showEditModal);
-                                      console.log(originalVals)
-                                      console.log(cell);
-                                    }}
+                                    <button
+                                      className=" p-2.5 bg-white-500 rounded-xl hover:rounded-3xl hover:bg-gray-600 transition-all duration-300 text-black"
+                                      onClick={() => {
+                                        setOrigirnalVals(cell);
+                                        setEditModal(!showEditModal);
+                                        console.log(originalVals);
+                                        console.log(cell);
+                                      }}
                                     >
                                       <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -415,9 +410,7 @@ const Table = ({
                                       </svg>
                                     </button>
                                   </>
-                                ) : (
-                                  null
-                                )}
+                                ) : null}
                                 {/* {console.log(cell)} */}
                               </>
                             );
